@@ -1,4 +1,24 @@
 // Add your code here
+let playerSelection;
+let computerSelection;
+let count = 0;
+
+const rockButton = document.querySelector("#button1");
+const paperButton = document.querySelector("#button2");
+const scissorsButton = document.querySelector("#button3");
+const playButton = document.querySelector("#play");
+
+function clickRockButton() {
+  return "rock";
+}
+
+function clickPaperButton() {
+  return "paper";
+}
+
+function clickScissorsButton() {
+  return "scissors";
+}
 
 function getComputerChoice () {
   const guessArray = ["Rock", "Paper", "Scissors"];
@@ -9,14 +29,37 @@ function getComputerChoice () {
 
   return (randomlyGuessArray);
 }
+
+let rockSelection = rockButton.addEventListener("click", clickRockButton);
+let paperSelection = paperButton.addEventListener("click", clickPaperButton);
+let scissorsSelection = scissorsButton.addEventListener("click", clickScissorsButton);
+
+if (rockSelection === "rock") {
+  playerSelection = clickRockButton();
+
+} else if (paperSelection === "paper") {
+  playerSelection = clickPaperButton();
   
+} else if (scissorsSelection === "scissors") {
+  playerSelection = clickScissorsButton();
   
-let playerSelection;
-let computerSelection;
-let count = 0;
-  
+}
+
+
+rockButton.addEventListener("click", clickRockButton);
+paperButton.addEventListener("click", clickPaperButton);
+scissorsButton.addEventListener("click", clickScissorsButton);
+playButton.addEventListener("click", game);
+
+
+
+
+
+
 function game(playerSelection, computerSelection) {
-  playerSelection = (prompt("Guess Rock or Paper or Scissors")).toLowerCase();
+  
+
+
   computerSelection = getComputerChoice();
   console.log(playerSelection);
   console.log(computerSelection);
@@ -49,6 +92,10 @@ function game(playerSelection, computerSelection) {
 
 }
 
+/*
+console.log(game(playerSelection, computerSelection));
+
+
 
 
 
@@ -66,7 +113,7 @@ if (count >= 3) {
   alert("You lose the Game");
 }
     
-  
+  */
   
   
   
