@@ -1,4 +1,123 @@
 // Add your code here
+// catch your DOM first
+
+let userScore = 0;
+let computerScore = 0;
+const userScoreSpan = document.getElementById("user-score");
+const computerScoreSpan = document.getElementById("computer-score");
+const scoreBoard = document.querySelector(".score-board");
+const resultDiv = document.querySelector(".result");
+const rockChoice = document.getElementById("rock");
+const paperChoice = document.getElementById("paper");
+const scissorsChoice = document.getElementById("scissors");
+
+function getComputerChoice () {
+  const guessArray = ["Rock", "Paper", "Scissors"];
+  
+  const randomly = Math.floor(Math.random() * guessArray.length);
+  
+  const randomlyGuessArray = guessArray[randomly].toLowerCase();
+
+  return (randomlyGuessArray);
+}
+
+
+
+function game(playerSelection) {
+  const computerSelection = getComputerChoice();
+  let result = "";
+  console.log(playerSelection);
+  console.log(computerSelection);
+  if (playerSelection === computerSelection) {
+    userScore += 0;
+    computerScore += 0;
+    rockChoice.style.cssText= "background: grey";
+    result = "It is a draw!";
+  } else if (playerSelection === "rock" && computerSelection === "paper") {
+    userScore += 0;
+    computerScore += 1;
+    rockChoice.style.cssText= "background: red";
+    const smallUserWord = "user".fontsize(3).sub();
+    const smallComputerWord = "computer".fontsize(3).sub();
+    result = `You Lose! ${computerSelection}${smallComputerWord} beats ${playerSelection}${smallUserWord}`;
+  } else if (playerSelection === "rock" && computerSelection === "scissors") {
+    userScore += 1;
+    computerScore += 0;
+    rockChoice.style.cssText= "background: green";
+    result = `You won! ${playerSelection} beats ${computerSelection}`;
+  } else if (playerSelection === "paper" && computerSelection === "rock") {
+    userScore += 1;
+    computerScore += 0;
+    paperChoice.style.cssText= "background: green";
+    result = `You won! ${playerSelection} beats ${computerSelection}`;
+  } else if (playerSelection === "paper" && computerSelection === "scissors") {
+    userScore += 0;
+    computerScore += 1;
+    rockChoice.style.cssText= "background: red";
+    const smallUserWord = "user".fontsize(3).sub();
+    const smallComputerWord = "computer".fontsize(3).sub();
+    result = `You Lose! ${computerSelection}${smallComputerWord} beats ${playerSelection}${smallUserWord}`;
+  } else if (playerSelection === "scissors" && computerSelection === "rock") {
+    userScore += 0;
+    computerScore += 1;
+    rockChoice.style.cssText= "background: red";
+    const smallUserWord = "user".fontsize(3).sub();
+    const smallComputerWord = "computer".fontsize(3).sub();
+    result = `You Lose! ${computerSelection}${smallComputerWord} beats ${playerSelection}${smallUserWord}`;
+  } else if (playerSelection === "scissors" && computerSelection === "paper") {
+    userScore += 1;
+    computerScore += 0;
+    scissorsChoice.style.cssText= "background: green";
+    result = `You won! ${playerSelection} beats ${computerSelection}`;
+  } else {
+    userScore += 0;
+    computerScore += 0;
+    result = "Oops! something went wrong";
+  }
+
+  userScoreSpan.textContent = userScore;
+  computerScoreSpan.textContent = computerScore;
+  resultDiv.innerHTML = result;
+  resultDiv.style.cssText = "text-align: center; font-family: Asap, sans-serif";
+  
+}
+
+rockChoice.addEventListener("click", function() {
+  game("rock")
+})
+
+paperChoice.addEventListener("click", function() {
+  game("paper")
+})
+
+scissorsChoice.addEventListener("click", function() {
+  game("scissors")
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 let playerSelection;
 let computerSelection;
 let count = 0;
@@ -91,6 +210,7 @@ function game(playerSelection, computerSelection) {
   }
 
 }
+*/
 
 /*
 console.log(game(playerSelection, computerSelection));
