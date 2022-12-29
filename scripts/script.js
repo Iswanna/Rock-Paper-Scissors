@@ -1,78 +1,156 @@
 // Add your code here
+// catch your DOM first
+
+let userScore = 0;
+let computerScore = 0;
+const userScoreSpan = document.getElementById("user-score");
+const computerScoreSpan = document.getElementById("computer-score");
+const scoreBoard = document.querySelector(".score-board");
+const resultDiv = document.querySelector(".result");
+const rockChoice = document.getElementById("rock");
+const paperChoice = document.getElementById("paper");
+const scissorsChoice = document.getElementById("scissors");
+let count = 0;
 
 function getComputerChoice () {
-    const guessArray = ["Rock", "Paper", "Scissors"];
+  const guessArray = ["Rock", "Paper", "Scissors"];
+  
+  const randomly = Math.floor(Math.random() * guessArray.length);
+  
+  const randomlyGuessArray = guessArray[randomly].toLowerCase();
+
+  return (randomlyGuessArray);
+}
+
+
+function win(userSelection, computerSelection) {
+  const smallUserWord = "user".fontsize(3).sub();
+  const smallComputerWord = "computer".fontsize(3).sub();
+  userScore += 1;
+  computerScore += 0;
+  userScoreSpan.textContent = userScore;
+  computerScoreSpan.textContent = computerScore;
+  result = `You won! ${userSelection}${smallUserWord} beats ${computerSelection}${smallComputerWord}`;
+  resultDiv.innerHTML = result;
+  resultDiv.style.cssText = "text-align: center; font-family: Asap, sans-serif";
+  document.getElementById(userSelection).classList.add('green-glow');
+  setTimeout(function() {document.getElementById(userSelection).classList.remove('green-glow');}, 300);
+}
+
+function lose(userSelection, computerSelection) {
+  const smallUserWord = "user".fontsize(3).sub();
+  const smallComputerWord = "computer".fontsize(3).sub();
+  userScore += 0;
+  computerScore += 1;
+  userScoreSpan.textContent = userScore;
+  computerScoreSpan.textContent = computerScore;
+  result = `You Lose! ${computerSelection}${smallComputerWord} beats ${userSelection}${smallUserWord}`;
+  resultDiv.innerHTML = result;
+  resultDiv.style.cssText = "text-align: center; font-family: Asap, sans-serif";
+  document.getElementById(userSelection).classList.add('red-glow');
+  setTimeout(function() {document.getElementById(userSelection).classList.remove('red-glow');}, 300);
+}
+
+function draw(userSelection, computerSelection) {
+  const smallUserWord = "user".fontsize(3).sub();
+  const smallComputerWord = "computer".fontsize(3).sub();
+  userScore += 0;
+  computerScore += 0;
+  userScoreSpan.textContent = userScore;
+  computerScoreSpan.textContent = computerScore;
+  result = `It is a draw! ${userSelection}${smallUserWord} equals ${computerSelection}${smallComputerWord}`;
+  resultDiv.innerHTML = result;
+  resultDiv.style.cssText = "text-align: center; font-family: Asap, sans-serif";
+  document.getElementById(userSelection).classList.add('grey-glow');
+  setTimeout(function() {document.getElementById(userSelection).classList.remove('grey-glow');}, 300);
+}
+
+function fiveRounds() {
+  resultDiv.innerHTML = "GAME OVER!";
+
+  if (userScoreSpan.innerHTML > computerScoreSpan.innerHTML) {
+    setTimeout(function () {resultDiv.innerHTML = "Congratulations! You won the game";}, 1000);
     
-    const randomly = Math.floor(Math.random() * guessArray.length);
-   
-    const randomlyGuessArray = guessArray[randomly].toLowerCase();
-  
-    return (randomlyGuessArray);
-  }
-  
-  
-  let playerSelection;
-  let computerSelection;
-  let count = 0;
-  
-  function game(playerSelection, computerSelection) {
-    playerSelection = (prompt("Guess Rock or Paper or Scissors")).toLowerCase();
-    computerSelection = getComputerChoice();
-    console.log(playerSelection);
-    console.log(computerSelection);
-    
-    if (playerSelection === computerSelection) {
-      console.log(count = count + 0);
-      return("It is a draw!");
-    } else if (playerSelection === "rock" && computerSelection === "paper") {
-        console.log(count = count + 0);
-        return(`You Lose! ${computerSelection} beats ${playerSelection}`);
-    } else if (playerSelection === "rock" && computerSelection === "scissors") {
-        console.log(count = count + 1);
-        return(`You won! ${playerSelection} beats ${computerSelection}`);
-    } else if (playerSelection === "paper" && computerSelection === "rock") {
-        console.log(count = count + 1);
-        return(`You won! ${playerSelection} beats ${computerSelection}`)
-    } else if (playerSelection === "paper" && computerSelection === "scissors") {
-        console.log(count = count + 0);
-        return(`You Lose! ${computerSelection} beats ${playerSelection}`);
-    } else if (playerSelection === "scissors" && computerSelection === "rock") {
-         console.log(count = count + 0);
-        return(`You Lose! ${computerSelection} beats ${playerSelection}`);
-    } else if (playerSelection === "scissors" && computerSelection === "paper") {
-        console.log(count = count + 1);
-        return(`You won! ${playerSelection} beats ${computerSelection}`);
-    } else {
-        console.log(count = count + 0);
-        return("Oops! something went wrong");
-    }
-  
-  }
-  
-  
-  
-  
-  
-  for (i=0; i<5; i++) {
-        console.log(game(playerSelection, computerSelection));
-  }
-  
-  alert(count);
-  alert("GAME OVER");
-  
-  if (count >= 3) {
-    alert("You won the Game");
   } else {
-    alert("You lose the Game");
+    setTimeout(function() {resultDiv.innerHTML = "Sorry! You lost the game";}, 1000);
+   
+  } 
+  
+  if (count > 6) {
+    location.reload();
   }
+
+
+}
+
+
+function game(userSelection) {
+  const computerSelection = getComputerChoice();
+  let result = "";
+  count += 1;
+  console.log(count);
+
+  if (userSelection === computerSelection) {
+    draw(userSelection, computerSelection);
+  } else if (userSelection === "rock" && computerSelection === "paper") {
+    lose(userSelection, computerSelection); 
+  } else if (userSelection === "rock" && computerSelection === "scissors") {
+    win(userSelection, computerSelection);
+  } else if (userSelection === "paper" && computerSelection === "rock") {
+    win(userSelection, computerSelection);
+  } else if (userSelection === "paper" && computerSelection === "scissors") {
+    lose(userSelection, computerSelection); 
+  } else if (userSelection === "scissors" && computerSelection === "rock") {
+    lose(userSelection, computerSelection); 
+  } else if (userSelection === "scissors" && computerSelection === "paper") {
+    win(userSelection, computerSelection);
+  } else {
+    userScore += 0;
+    computerScore += 0;
+    result = "Oops! something went wrong";
+  }
+  
+  
+  if (count > 5) {
     
+    fiveRounds();
+  } 
   
+ 
+
+}
   
+
   
-  
-  
-  
-  
+
+rockChoice.addEventListener("click", function() {
+  game("rock");
+})
+
+paperChoice.addEventListener("click", function() {
+  game("paper");
+})
+
+scissorsChoice.addEventListener("click", function() {
+  game("scissors");
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
   
   
   
