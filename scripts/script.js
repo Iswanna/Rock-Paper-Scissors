@@ -113,6 +113,30 @@ function game(userSelection) {
   
 }
 
+function whenGameOver() {
+  resultDiv.innerHTML = "GAME OVER!";
+  if (userScoreSpan.innerHTML > computerScoreSpan.innerHTML) {
+    setTimeout(function () {resultDiv.innerHTML = "Congratulations! You won the game";}, 1000);
+    actionMessage.innerHTML = "CLICK ANYWHERE TO TRY AGAIN!";
+    actionMessage.style.backgroundColor = "blue";
+    
+  } else if (userScoreSpan.innerHTML < computerScoreSpan.innerHTML) {
+    setTimeout(function() {resultDiv.innerHTML = "Sorry! You lost the game";}, 1000);
+    actionMessage.innerHTML = "CLICK ANYWHERE TO TRY AGAIN!";
+    actionMessage.style.backgroundColor = "red";
+   
+  } else {
+    setTimeout(function() {resultDiv.innerHTML = "The game is a draw!";}, 1000);
+    actionMessage.innerHTML = "CLICK ANYWHERE TO TRY AGAIN!";
+    actionMessage.style.backgroundColor = "grey";
+  }
+
+  document.addEventListener("click", function() {
+    if(resultDiv.innerHTML === "Congratulations! You won the game" || resultDiv.innerHTML === "Sorry! You lost the game") {
+      location.reload();
+    }
+  })
+}
 
 
 
@@ -126,19 +150,7 @@ rockChoice.addEventListener("click", function() {
   if(count <=5 ) {
     game("rock");
   } else if (count === 6) {
-    resultDiv.innerHTML = "GAME OVER!";
-
-  if (userScoreSpan.innerHTML > computerScoreSpan.innerHTML) {
-    setTimeout(function () {resultDiv.innerHTML = "Congratulations! You won the game";}, 1000);
-    actionMessage.innerHTML = "CLICK ANYWHERE TO TRY AGAIN!";
-    actionMessage.style.backgroundColor = "blue";
-    
-  } else {
-    setTimeout(function() {resultDiv.innerHTML = "Sorry! You lost the game";}, 1000);
-    actionMessage.innerHTML = "CLICK ANYWHERE TO TRY AGAIN!";
-    actionMessage.style.backgroundColor = "red";
-   
-  } 
+      whenGameOver();
   }
   
 })
@@ -148,19 +160,7 @@ paperChoice.addEventListener("click", function() {
   if (count <= 5) {
     game("paper");
   } else if (count === 6) {
-    resultDiv.innerHTML = "GAME OVER!";
-
-  if (userScoreSpan.innerHTML > computerScoreSpan.innerHTML) {
-    setTimeout(function () {resultDiv.innerHTML = "Congratulations! You won the game";}, 1000);
-    actionMessage.innerHTML = "CLICK ANYWHERE TO TRY AGAIN!";
-    actionMessage.style.backgroundColor = "blue";
-    
-  } else {
-    setTimeout(function() {resultDiv.innerHTML = "Sorry! You lost the game";}, 1000);
-    actionMessage.innerHTML = "CLICK ANYWHERE TO TRY AGAIN!";
-    actionMessage.style.backgroundColor = "red";
-   
-  } 
+      whenGameOver(); 
   }
   
 })
@@ -170,28 +170,14 @@ scissorsChoice.addEventListener("click", function() {
   if (count <= 5) {
     game("scissors");
   } else if (count === 6) {
-    resultDiv.innerHTML = "GAME OVER!";
-
-  if (userScoreSpan.innerHTML > computerScoreSpan.innerHTML) {
-    setTimeout(function () {resultDiv.innerHTML = "Congratulations! You won the game";}, 1000);
-    actionMessage.innerHTML = "CLICK ANYWHERE TO TRY AGAIN!";
-    actionMessage.style.backgroundColor = "blue";
-    
-  } else {
-    setTimeout(function() {resultDiv.innerHTML = "Sorry! You lost the game";}, 1000);
-    actionMessage.innerHTML = "CLICK ANYWHERE TO TRY AGAIN!";
-    actionMessage.style.backgroundColor = "red";
-   
-  } 
+      whenGameOver();
   }
   
 })
 
-document.addEventListener("click", function() {
-  if(resultDiv.innerHTML === "Congratulations! You won the game" || resultDiv.innerHTML === "Sorry! You lost the game") {
-    location.reload();
-  }
-})
+
+
+
 
 
 
