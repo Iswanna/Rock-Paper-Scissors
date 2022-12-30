@@ -66,22 +66,6 @@ function draw(userSelection, computerSelection) {
   setTimeout(function() {document.getElementById(userSelection).classList.remove('grey-glow');}, 300);
 }
 
-function fiveRounds() {
-  resultDiv.innerHTML = "GAME OVER!";
-
-  if (userScoreSpan.innerHTML > computerScoreSpan.innerHTML) {
-    setTimeout(function () {resultDiv.innerHTML = "Congratulations! You won the game";}, 1000);
-    
-  } else {
-    setTimeout(function() {resultDiv.innerHTML = "Sorry! You lost the game";}, 1000);
-   
-  } 
-  
-
-  
- 
-
-}
 
 
 function game(userSelection) {
