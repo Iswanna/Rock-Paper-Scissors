@@ -10,6 +10,7 @@ const resultDiv = document.querySelector(".result");
 const rockChoice = document.getElementById("rock");
 const paperChoice = document.getElementById("paper");
 const scissorsChoice = document.getElementById("scissors");
+const actionMessage = document.getElementById("action-message");
 let count = 0;
 
 function getComputerChoice () {
@@ -76,10 +77,9 @@ function fiveRounds() {
    
   } 
   
-  if (count > 6) {
-    location.reload();
-  }
 
+  
+ 
 
 }
 
@@ -87,7 +87,7 @@ function fiveRounds() {
 function game(userSelection) {
   const computerSelection = getComputerChoice();
   let result = "";
-  count += 1;
+  
   console.log(count);
 
   if (userSelection === computerSelection) {
@@ -109,30 +109,88 @@ function game(userSelection) {
     computerScore += 0;
     result = "Oops! something went wrong";
   }
-  
-  
-  if (count > 5) {
-    
-    fiveRounds();
-  } 
-  
  
-
+  
 }
+
+
+
+
+
   
 
   
 
 rockChoice.addEventListener("click", function() {
-  game("rock");
+  count += 1;
+  if(count <=5 ) {
+    game("rock");
+  } else if (count === 6) {
+    resultDiv.innerHTML = "GAME OVER!";
+
+  if (userScoreSpan.innerHTML > computerScoreSpan.innerHTML) {
+    setTimeout(function () {resultDiv.innerHTML = "Congratulations! You won the game";}, 1000);
+    actionMessage.innerHTML = "CLICK ANYWHERE TO TRY AGAIN!";
+    actionMessage.style.backgroundColor = "blue";
+    
+  } else {
+    setTimeout(function() {resultDiv.innerHTML = "Sorry! You lost the game";}, 1000);
+    actionMessage.innerHTML = "CLICK ANYWHERE TO TRY AGAIN!";
+    actionMessage.style.backgroundColor = "red";
+   
+  } 
+  }
+  
 })
 
 paperChoice.addEventListener("click", function() {
-  game("paper");
+  count += 1;
+  if (count <= 5) {
+    game("paper");
+  } else if (count === 6) {
+    resultDiv.innerHTML = "GAME OVER!";
+
+  if (userScoreSpan.innerHTML > computerScoreSpan.innerHTML) {
+    setTimeout(function () {resultDiv.innerHTML = "Congratulations! You won the game";}, 1000);
+    actionMessage.innerHTML = "CLICK ANYWHERE TO TRY AGAIN!";
+    actionMessage.style.backgroundColor = "blue";
+    
+  } else {
+    setTimeout(function() {resultDiv.innerHTML = "Sorry! You lost the game";}, 1000);
+    actionMessage.innerHTML = "CLICK ANYWHERE TO TRY AGAIN!";
+    actionMessage.style.backgroundColor = "red";
+   
+  } 
+  }
+  
 })
 
 scissorsChoice.addEventListener("click", function() {
-  game("scissors");
+  count += 1;
+  if (count <= 5) {
+    game("scissors");
+  } else if (count === 6) {
+    resultDiv.innerHTML = "GAME OVER!";
+
+  if (userScoreSpan.innerHTML > computerScoreSpan.innerHTML) {
+    setTimeout(function () {resultDiv.innerHTML = "Congratulations! You won the game";}, 1000);
+    actionMessage.innerHTML = "CLICK ANYWHERE TO TRY AGAIN!";
+    actionMessage.style.backgroundColor = "blue";
+    
+  } else {
+    setTimeout(function() {resultDiv.innerHTML = "Sorry! You lost the game";}, 1000);
+    actionMessage.innerHTML = "CLICK ANYWHERE TO TRY AGAIN!";
+    actionMessage.style.backgroundColor = "red";
+   
+  } 
+  }
+  
+})
+
+document.addEventListener("click", function() {
+  if(resultDiv.innerHTML === "Congratulations! You won the game" || resultDiv.innerHTML === "Sorry! You lost the game") {
+    location.reload();
+  }
 })
 
 

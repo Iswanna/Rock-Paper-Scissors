@@ -86,6 +86,12 @@ header > h1 {
     background: rgb(38, 38, 39);
 }
 
+.action-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #action-message {
     text-align: center;
     color: white;
@@ -93,6 +99,8 @@ header > h1 {
     font-family: Asap, sans-serif;
     font-weight: bold;
     margin-top: 20px;
+    width: 300px;
+    
 }
 
 .green-glow {
